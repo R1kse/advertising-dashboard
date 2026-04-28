@@ -1,0 +1,10 @@
+﻿const xlsx = require('xlsx');
+const path = require('path');
+const filePath = 'C:\\Users\\SBais\\Downloads\\claude анализ (1).xlsx';
+const wb = xlsx.readFile(filePath);
+const ws = wb.Sheets['Лист2'];
+const raw = xlsx.utils.sheet_to_json(ws, { header: 1, defval: null });
+const headers = raw[1];
+console.log('All headers count:', headers.length);
+headers.forEach((h, i) => { if (h) console.log(i, JSON.stringify(h)); });
+console.log('---Row 3 (first 50 cols):', JSON.stringify(raw[2] ? raw[2].slice(0,50) : null));
